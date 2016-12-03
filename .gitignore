@@ -20,6 +20,4 @@ manifest.mf
 *.local.*
 /dist/
 nb*
-
-/algorithms/algorithms/target/
 /target/
