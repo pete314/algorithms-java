@@ -23,12 +23,17 @@
  */
 package ie.peternagy.algorithms.models;
 
+import java.security.SecureRandom;
+import org.apache.commons.codec.binary.Hex;
+
 public class User implements Comparable<User>{
     private User next;
     private User prev;
     private String username;
 
-    public User() {}
+    public User() {
+        random();
+    }
     
     public User(String username) {
         this.username = username;
@@ -67,5 +72,11 @@ public class User implements Comparable<User>{
     @Override
     public int compareTo(User o) {
         return this.username.compareTo(o.username);
+    }
+    
+    private void random(){
+        byte[] bytes = new byte[12];
+        (new SecureRandom()).nextBytes(bytes);
+        this.username = new String(Hex.encodeHex(bytes));
     }
 }
