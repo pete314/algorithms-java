@@ -18,20 +18,20 @@
  * @author Peter Nagy - https://peternagy.ie
  * @since December 2016
  * @version 0.1
- * @description BubbleSort - Bubble sort implementation
+ * @description HeapSort - Heap sort implementation
  * @package ie.peternagy.algorithms.sorting
  */
 package ie.peternagy.algorithms.sorting;
 
-import ie.peternagy.algorithms.models.User;
+public class HeapSort {
 
-public class BubbleSort{
+    private static int arrayLength;
 
     /**
      * Bubble sort Comparable array elements
-     * 
+     *
      * Time complexity: O(n^2)
-     * 
+     *
      * @param items - the objects to sort
      */
     public static void sort(Comparable[] items) {
@@ -40,28 +40,58 @@ public class BubbleSort{
 
     /**
      * Bubble sort Comparable array elements with order
-     * 
+     *
      * Time complexity: O(n^2)
-     * 
+     *
      * @param items - the objects to sort
-     * @param sortAsc - if true the order will be increasing (ascending)
+     * @param isAsc - if true the order will be increasing (ascending)
      */
-    public static void sort(Comparable[] items, boolean sortAsc) {
-        int arrayLength = items.length;
-        
-        for (int i = 0; i < arrayLength; i++) {
-            for (int j = 1; j < (arrayLength - i); j++) {
-                if ((sortAsc && items[j - 1].compareTo(items[j]) > 0)
-                        || (!sortAsc && items[j - 1].compareTo(items[j]) < 0)) {
-                    swapItems(items, j - 1, j);
-                }
-            }
+    public static void sort(Comparable[] items, boolean isAsc) {
+        arrayLength = items.length - 1;
+        for (int i = arrayLength / 2; i >= 0; i--) {
+            heapify(items, i, isAsc);
+        }
+
+        for (int i = arrayLength; i > 0; i--) {
+            swapItems(items, 0, i);
+            arrayLength--;
+            heapify(items, 0, isAsc);
+        }
+    }
+
+    /**
+     * Shift objects until heap property is fulfilled
+     *
+     * @param items - the objects to heapify
+     * @param rootIndex - start recursion from
+     * @param isAsc - order of the items
+     */
+    private static void heapify(Comparable[] items, int rootIndex, boolean isAsc) {
+        int leftIndex = rootIndex * 2;
+        int rigthIndex = leftIndex + 1;
+        int greaterIndex = rootIndex;
+
+        if (leftIndex <= arrayLength
+                && (isAsc && items[leftIndex].compareTo(items[greaterIndex]) > 0
+                || !isAsc && items[leftIndex].compareTo(items[greaterIndex]) < 0)) {
+            greaterIndex = leftIndex;
+        }
+
+        if (rigthIndex <= arrayLength
+                && (isAsc && items[rigthIndex].compareTo(items[greaterIndex]) > 0
+                || !isAsc && items[rigthIndex].compareTo(items[greaterIndex]) < 0)) {
+            greaterIndex = rigthIndex;
+        }
+
+        if (greaterIndex != rootIndex) {
+            swapItems(items, rootIndex, greaterIndex);
+            heapify(items, greaterIndex, isAsc);
         }
     }
 
     /**
      * Swap items in array
-     * 
+     *
      * @param items - the array to work with
      * @param indexOne - the first item index to swap
      * @param indexTwo - second index to swap with first
