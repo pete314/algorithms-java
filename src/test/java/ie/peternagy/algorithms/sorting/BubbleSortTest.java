@@ -23,6 +23,7 @@
  */
 package ie.peternagy.algorithms.sorting;
 
+import ie.peternagy.algorithms.models.Score;
 import ie.peternagy.algorithms.models.User;
 import java.util.Arrays;
 import org.apache.commons.lang3.ArrayUtils;
@@ -33,15 +34,17 @@ import static org.junit.Assert.*;
 
 public class BubbleSortTest {
     private final static int OBJECT_CNT = 10000;
-    private static User[] items = new User[OBJECT_CNT];
+    private static User[] userArr = new User[OBJECT_CNT];
+    private static Score[] scoreArr = new Score[OBJECT_CNT];
     
     public BubbleSortTest() {}
     
     @BeforeClass
     public static void setUpClass() {
-        for(int i = 0; i < OBJECT_CNT; i++)
-            items[i] = new User();
-            
+        for(int i = 0; i < OBJECT_CNT; i++){
+            userArr[i] = new User();
+            scoreArr[i] = new Score();
+        }           
     }
     
     
@@ -53,10 +56,10 @@ public class BubbleSortTest {
      * Test of sort method, of class BubbleSort.
      */
     @Test
-    public void testSort_ComparableArr() {
-        System.out.println("sort - asc");
-        User[] itemsBubbleSort = items;
-        User[] itemsSort = items;
+    public void testSort_ComparableUserArr() {
+        System.out.println("sort - asc (String - User)");
+        User[] itemsBubbleSort = userArr;
+        User[] itemsSort = userArr;
         
         Arrays.sort(itemsSort);
         BubbleSort.sort(itemsBubbleSort);
@@ -68,11 +71,44 @@ public class BubbleSortTest {
      * Test of sort method, of class BubbleSort.
      */
     @Test
-    public void testSort_ComparableArr_boolean() {
-        System.out.println("sort - desc");
+    public void testSort_ComparableUserArr_boolean() {
+        System.out.println("sort - desc (String - User)");
         boolean sortAsc = false;
-        User[] itemsBubbleSort = items;
-        User[] itemsSort = items;
+        User[] itemsBubbleSort = userArr;
+        User[] itemsSort = userArr;
+        
+        Arrays.sort(itemsSort);
+        ArrayUtils.reverse(itemsSort);
+        BubbleSort.sort(itemsBubbleSort, sortAsc);
+        
+        assertEquals(true, Arrays.equals(itemsSort, itemsBubbleSort));
+    }
+    
+    
+    /**
+     * Test of sort method, of class BubbleSort.
+     */
+    @Test
+    public void testSort_ComparableScoreArr() {
+        System.out.println("sort - asc (Integer - User)");
+        User[] itemsBubbleSort = userArr;
+        User[] itemsSort = userArr;
+        
+        Arrays.sort(itemsSort);
+        BubbleSort.sort(itemsBubbleSort);
+        
+        assertEquals(true, Arrays.equals(itemsSort, itemsBubbleSort));
+    }
+
+    /**
+     * Test of sort method, of class BubbleSort.
+     */
+    @Test
+    public void testSort_ComparableScoreArr_boolean() {
+        System.out.println("sort - desc (Integer - User)");
+        boolean sortAsc = false;
+        Score[] itemsBubbleSort = scoreArr;
+        Score[] itemsSort = scoreArr;
         
         Arrays.sort(itemsSort);
         ArrayUtils.reverse(itemsSort);
