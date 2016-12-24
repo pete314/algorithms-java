@@ -23,7 +23,6 @@
  */
 package ie.peternagy.algorithms.sorting;
 
-import ie.peternagy.algorithms.models.User;
 
 public class BubbleSort{
 

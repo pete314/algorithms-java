@@ -18,7 +18,7 @@
  * @author Peter Nagy - https://peternagy.ie
  * @since December 2016
  * @version 0.1
- * @description HeapSortTest - Test cases for HeapSort
+ * @description MergeSortTest - Test cases
  * @package ie.peternagy.algorithms.sorting
  */
 package ie.peternagy.algorithms.sorting;
@@ -32,12 +32,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class HeapSortTest {
-    private final static int OBJECT_CNT = 1000;
+public class MergeSortTest {
+    
+    private final static int OBJECT_CNT = 10000;
     private static User[] userArr = new User[OBJECT_CNT];
     private static Score[] scoreArr = new Score[OBJECT_CNT];
     
-    public HeapSortTest() {
+    public MergeSortTest() {
+    
     }
     
     @BeforeClass
@@ -48,72 +50,73 @@ public class HeapSortTest {
         }
     }
     
-    
     @Before
     public void setUp() {
-        System.out.printf("\n==============\nTest cases for %s \n", HeapSort.class.getName());
+        System.out.printf("\n==============\nTest cases for %s \n", MergeSort.class.getName());
     }
-    
     /**
-     * Test of sort method, of class HeapSort.
+     * Test of sort method, of class MergeSort.
      */
     @Test
     public void testSort_ComparableUserArr() {
         System.out.println("sort - asc (String - User)");
-        User[] itemsHeapSort = Arrays.copyOf(userArr, OBJECT_CNT);
-        User[] itemsSort = Arrays.copyOf(userArr, OBJECT_CNT);
+        User[] itemsMergeSort = userArr;
+        User[] itemsSort = userArr;
         
         Arrays.sort(itemsSort);
-        HeapSort.sort(itemsHeapSort);
+        MergeSort.sort(itemsMergeSort);
         
-        assertTrue(Arrays.equals(itemsSort, itemsHeapSort));
+        assertEquals(true, Arrays.equals(itemsSort, itemsMergeSort));
     }
 
     /**
-     * Test of sort method, of class HeapSort.
+     * Test of sort method, of class MergeSort.
+     */
+    @Test
+    public void testSort_ComparableUserArr_boolean() {
+        System.out.println("sort - desc (String - User)");
+        boolean sortAsc = false;
+        User[] itemsMergeSort = Arrays.copyOf(userArr, OBJECT_CNT);
+        User[] itemsSort = Arrays.copyOf(userArr, OBJECT_CNT);
+        
+        Arrays.sort(itemsSort);
+        ArrayUtils.reverse(itemsSort);
+        MergeSort.sort(itemsMergeSort, sortAsc);
+        
+        assertEquals(true, Arrays.equals(itemsSort, itemsMergeSort));
+    }
+    
+    
+    /**
+     * Test of sort method, of class MergeSort.
      */
     @Test
     public void testSort_ComparableScoreArr() {
         System.out.println("sort - asc (Integer - Score)");
-        Score[] itemsHeapSort = Arrays.copyOf(scoreArr, OBJECT_CNT);
+        Score[] itemsMergeSort = Arrays.copyOf(scoreArr, OBJECT_CNT);
         Score[] itemsSort = Arrays.copyOf(scoreArr, OBJECT_CNT);
         
         Arrays.sort(itemsSort);
-        HeapSort.sort(itemsHeapSort);
+        MergeSort.sort(itemsMergeSort);
         
-        assertTrue(Arrays.equals(itemsSort, itemsHeapSort));
-    }
-    
-    /**
-     * Test of sort method, of class HeapSort.
-     */
-    @Test
-    public void testSort_ComparableUserArrDesc() {
-        System.out.println("sort - asc (String - User)");
-        User[] itemsHeapSort = Arrays.copyOf(userArr, OBJECT_CNT);
-        User[] itemsSort = Arrays.copyOf(userArr, OBJECT_CNT);
-        
-        Arrays.sort(itemsSort);
-        ArrayUtils.reverse(itemsSort);
-        HeapSort.sort(itemsHeapSort, false);
-        
-        assertTrue(Arrays.equals(itemsSort, itemsHeapSort));
+        assertEquals(true, Arrays.equals(itemsSort, itemsMergeSort));
     }
 
     /**
-     * Test of sort method, of class HeapSort.
+     * Test of sort method, of class MergeSort.
      */
     @Test
-    public void testSort_ComparableScoreArrDesc() {
-        System.out.println("sort - asc (Integer - Score)");
-        Score[] itemsHeapSort = Arrays.copyOf(scoreArr, OBJECT_CNT);
+    public void testSort_ComparableScoreArr_boolean() {
+        System.out.println("sort - desc (Integer - Score)");
+        boolean sortAsc = false;
+        Score[] itemsMergeSort = Arrays.copyOf(scoreArr, OBJECT_CNT);
         Score[] itemsSort = Arrays.copyOf(scoreArr, OBJECT_CNT);
         
         Arrays.sort(itemsSort);
         ArrayUtils.reverse(itemsSort);
-        HeapSort.sort(itemsHeapSort, false);
+        MergeSort.sort(itemsMergeSort, sortAsc);
         
-        assertTrue(Arrays.equals(itemsSort, itemsHeapSort));
+        assertEquals(true, Arrays.equals(itemsSort, itemsMergeSort));
     }
     
 }

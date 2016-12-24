@@ -58,8 +58,8 @@ public class BubbleSortTest {
     @Test
     public void testSort_ComparableUserArr() {
         System.out.println("sort - asc (String - User)");
-        User[] itemsBubbleSort = userArr;
-        User[] itemsSort = userArr;
+        User[] itemsBubbleSort = Arrays.copyOf(userArr, OBJECT_CNT);
+        User[] itemsSort = Arrays.copyOf(userArr, OBJECT_CNT);
         
         Arrays.sort(itemsSort);
         BubbleSort.sort(itemsBubbleSort);
@@ -74,8 +74,8 @@ public class BubbleSortTest {
     public void testSort_ComparableUserArr_boolean() {
         System.out.println("sort - desc (String - User)");
         boolean sortAsc = false;
-        User[] itemsBubbleSort = userArr;
-        User[] itemsSort = userArr;
+        User[] itemsBubbleSort = Arrays.copyOf(userArr, OBJECT_CNT);
+        User[] itemsSort = Arrays.copyOf(userArr, OBJECT_CNT);
         
         Arrays.sort(itemsSort);
         ArrayUtils.reverse(itemsSort);
@@ -90,9 +90,9 @@ public class BubbleSortTest {
      */
     @Test
     public void testSort_ComparableScoreArr() {
-        System.out.println("sort - asc (Integer - User)");
-        User[] itemsBubbleSort = userArr;
-        User[] itemsSort = userArr;
+        System.out.println("sort - asc (Integer - Score)");
+        User[] itemsBubbleSort = Arrays.copyOf(userArr, OBJECT_CNT);
+        User[] itemsSort = Arrays.copyOf(userArr, OBJECT_CNT);
         
         Arrays.sort(itemsSort);
         BubbleSort.sort(itemsBubbleSort);
@@ -105,10 +105,10 @@ public class BubbleSortTest {
      */
     @Test
     public void testSort_ComparableScoreArr_boolean() {
-        System.out.println("sort - desc (Integer - User)");
+        System.out.println("sort - desc (Integer - Score)");
         boolean sortAsc = false;
-        Score[] itemsBubbleSort = scoreArr;
-        Score[] itemsSort = scoreArr;
+        Score[] itemsBubbleSort = Arrays.copyOf(scoreArr, OBJECT_CNT);
+        Score[] itemsSort = Arrays.copyOf(scoreArr, OBJECT_CNT);
         
         Arrays.sort(itemsSort);
         ArrayUtils.reverse(itemsSort);
